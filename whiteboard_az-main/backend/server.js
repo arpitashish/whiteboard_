@@ -18,7 +18,12 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-
+app.get("/", (req, res) => {
+    res.json({
+        status: "success",
+        message: "Whiteboard Backend is Running 🚀"
+    });
+});
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/canvas", canvasRoutes);
