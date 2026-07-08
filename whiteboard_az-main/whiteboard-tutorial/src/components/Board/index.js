@@ -65,13 +65,13 @@ function Board({ id }) {
         socket.off("unauthorized");
       };
     }
-  }, [id]);
+  },[id, setElements]);
 
   useEffect(() => {
     const fetchCanvasData = async () => {
       if (id && token) {
         try {
-          const response = await axios.get(`https://whiteboard-d37k.onrender.com/api/canvas/api/canvas/load/${id}`, {
+          const response = await axios.get(`https://whiteboard-d37k.onrender.com/api/canvas/load/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setCanvasId(id); // Set the current canvas ID
@@ -85,7 +85,7 @@ function Board({ id }) {
     };
 
     fetchCanvasData();
-  }, [id, token]);
+}, [id, token, setCanvasId, setElements, setHistory]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
