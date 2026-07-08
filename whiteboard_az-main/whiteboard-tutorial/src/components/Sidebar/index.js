@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import './index.min.css';
 import { useNavigate } from 'react-router-dom';
@@ -16,41 +16,41 @@ const { canvasId, setCanvasId, isUserLoggedIn, setUserLoginStatus } = useContext
   const [success, setSuccess] = useState("");
 
   const { id } = useParams(); 
+  const fetchCanvases = async () => {
+  try {
+    const response = await axios.get(
+      "https://whiteboard-d37k.onrender.com/api/canvas/list",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    setCanvases(response.data);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (response.data.length === 0) {
+      await handleCreateCanvas();
+    } else if (!canvasId && response.data.length > 0) {
+      if (!id) {
+        setCanvasId(response.data[0]._id);
+        handleCanvasClick(response.data[0]._id);
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching canvases:", error);
+  }
+};
+
+// eslint-disable-next-line react-hooks/exhaustive-deps
 useEffect(() => {
   if (isUserLoggedIn) {
     fetchCanvases();
   }
 }, [isUserLoggedIn]);
 
+
   useEffect(() => {}, []);
 
-  const fetchCanvases = async () => {
-    try {
-      const response = await axios.get('https://whiteboard-d37k.onrender.com/api/canvas/list', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setCanvases(response.data);
-      console.log(response.data)
-      
-      if (response.data.length === 0) {
-        const newCanvas = await handleCreateCanvas();
-        if (newCanvas) {
-          setCanvasId(newCanvas._id);
-          handleCanvasClick(newCanvas._id);
-        }
-      } else if (!canvasId && response.data.length > 0) {
-        if(!id){
-          setCanvasId(response.data[0]._id);
-          handleCanvasClick(response.data[0]._id);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching canvases:', error);
-    }
-  };
-
+  
+  
   const handleCreateCanvas = async () => {
     try {
       const response = await axios.post('https://whiteboard-d37k.onrender.com/api/canvas/create', {}, {
