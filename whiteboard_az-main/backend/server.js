@@ -33,11 +33,14 @@ connectToDB();
 
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors: {
-      origin: ["http://localhost:3000", "https://whiteboard-d37k.onrender.com"], 
-      methods: ["GET", "POST"],
-    },
-  });
+  cors: {
+    origin: [
+      "http://localhost:3000",
+      "https://whiteboard-xi-beryl.vercel.app"
+    ],
+    methods: ["GET", "POST"],
+  },
+});
 
 let canvasData = {};
 let i = 0;

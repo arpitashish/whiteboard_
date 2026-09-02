@@ -1,7 +1,7 @@
 // utils/api.js
 import axios from "axios";
 
-const API_BASE_URL = "https://whiteboard-d37k.onrender.com/api/canvas";
+const API_BASE_URL = "https://localhost:3000//api/canvas";
 const token = localStorage.getItem('whiteboard_user_token')
 
 
