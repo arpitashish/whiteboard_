@@ -19,7 +19,7 @@ const { canvasId, setCanvasId, isUserLoggedIn, setUserLoginStatus } = useContext
   const fetchCanvases = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:5000//api/canvas/list",
+      "https://whiteboard-d37k.onrender.com/api/canvas/list",
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -53,7 +53,7 @@ useEffect(() => {
   
   const handleCreateCanvas = async () => {
     try {
-      const response = await axios.post('http://localhost:5000//api/canvas/create', {}, {
+      const response = await axios.post('https://whiteboard-d37k.onrender.com/api/canvas/create', {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log(response.data)  
@@ -68,7 +68,7 @@ useEffect(() => {
 
   const handleDeleteCanvas = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000//api/canvas/delete/${id}`, {
+      await axios.delete(`https://whiteboard-d37k.onrender.com/api/canvas/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchCanvases();
@@ -105,7 +105,7 @@ useEffect(() => {
       setSuccess(""); // Clear previous success message
 
       const response = await axios.put(
-        `http://localhost:5000//api/canvas/share/${canvasId}`,
+        `https://whiteboard-d37k.onrender.com/api/canvas/share/${canvasId}`,
         { email },
         {
           headers: { Authorization: `Bearer ${token}` },

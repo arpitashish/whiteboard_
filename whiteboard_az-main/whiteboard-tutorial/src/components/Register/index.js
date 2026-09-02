@@ -15,7 +15,7 @@ const Register = () => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000//api/canvas', {
+      const response = await fetch('https://whiteboard-d37k.onrender.com/api/canvas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
