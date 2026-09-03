@@ -178,20 +178,20 @@ function Board({ id }) {
 
   return (
     <>
-      {toolActionType === TOOL_ACTION_TYPES.WRITING && (
-        <textarea
-          type="text"
-          ref={textAreaRef}
-          className={classes.textElementBox}
-          style={{
-            top: elements[elements.length - 1].y1,
-            left: elements[elements.length - 1].x1,
-            fontSize: `${elements[elements.length - 1]?.size}px`,
-            color: elements[elements.length - 1]?.stroke,
-          }}
-          onBlur={(event) => textAreaBlurHandler(event.target.value)}
-        />
-      )}
+      {toolActionType === TOOL_ACTION_TYPES.WRITING && elements.length > 0 && (
+  <textarea
+    type="text"
+    ref={textAreaRef}
+    className={classes.textElementBox}
+    style={{
+      top: elements[elements.length - 1]?.y1 || 0,
+      left: elements[elements.length - 1]?.x1 || 0,
+      fontSize: `${elements[elements.length - 1]?.size || 16}px`,
+      color: elements[elements.length - 1]?.stroke || "black",
+    }}
+    onBlur={(event) => textAreaBlurHandler(event.target.value)}
+  />
+)}
       <canvas
         ref={canvasRef}
         id="canvas"
