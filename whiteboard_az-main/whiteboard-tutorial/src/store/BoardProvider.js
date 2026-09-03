@@ -40,11 +40,21 @@ const boardReducer = (state, action) => {
       };
     }
     case BOARD_ACTIONS.DRAW_MOVE: {
-      const { clientX, clientY } = action.payload;
-      const newElements = [...state.elements];
-      const index = state.elements.length - 1;
-      const { type } = newElements[index];
-      switch (type) {
+
+  const { clientX, clientY } = action.payload;
+
+  const newElements = [...state.elements];
+
+  const index = state.elements.length - 1;
+
+  // Prevent error when there are no elements
+  if (index < 0 || !newElements[index]) {
+    return state;
+  }
+
+  const { type } = newElements[index];
+
+  switch (type) { 
         case TOOL_ITEMS.LINE:
         case TOOL_ITEMS.RECTANGLE:
         case TOOL_ITEMS.CIRCLE:
