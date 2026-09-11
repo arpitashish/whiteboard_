@@ -1,0 +1,6 @@
+Frontend (Vercel): https://whiteboard-xi-beryl.vercel.app
+Backend (Render): https://whiteboard-d37k.onrender.com
+
+MongoDB:
+The existing backend/.env contains the MongoDB connection used by the supplied project.
+For Render, set MONGO_URL in the service Environment Variables to that same value.
