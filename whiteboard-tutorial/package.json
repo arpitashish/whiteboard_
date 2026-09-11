@@ -13,7 +13,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-router-dom": "^7.1.5",
-    "react-scripts": "5.0.1",
+   "build": "CI=false react-scripts build",
     "roughjs": "^4.6.6",
     "socket.io-client": "^4.8.1",
     "web-vitals": "^2.1.4"
